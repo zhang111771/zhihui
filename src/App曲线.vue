@@ -154,36 +154,6 @@ const curveObject=new THREE.Line(geometry,material)
 
 scene.add(curveObject)
 
-let params={
-  value:0
-}
-
-gltfloader.load('./model/sphere3.glb',(gltf1)=>{
-  scene.add(gltf1.scene)
-  let sphere1=gltf1.scene.children[0]
-  sphere1.position.set(0,10,0)
-  gltfloader.load('./model/sphere4.glb',(gltf2)=>{
-  
-    sphere1.geometry.morphAttributes.position=[]
-    sphere1.geometry.morphAttributes.position.push(
-    gltf2.scene.children[0].geometry.attributes.position
-    
-  )
-  sphere1.updateMorphTargets()
-  gsap.to(params,{
-    value:1,
-    duration:2,
-    repeat:-1,
-    yoyo:true,
-    onUpdate:()=>{
-      sphere1.morphTargetInfluences[0]=params.value
-      console.log(sphere1)
-    }
-  })
-
-})
-})
-
 const renderer=new THREE.WebGLRenderer({antialias: true})
 renderer.outputEncoding=THREE.sRGBEncoding
 renderer.toneMapping=THREE.ACESFilmicToneMapping

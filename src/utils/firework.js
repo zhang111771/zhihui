@@ -4,6 +4,8 @@ import fragment from '../shader/firework/fragment.glsl'
 import fkFragment from '../shader/firework/fkFragment.glsl'
 import fkVertex from '../shader/firework/fkVertex.glsl'
 
+
+
 export default class FireWork{
     constructor(color,to,from={x:0.0,y:0,z:0}){
         let position=new Float32Array(3)
@@ -83,12 +85,15 @@ export default class FireWork{
             fragmentShader:fkFragment
         })
         this.fireworks=new THREE.Points(this.fireworkGeometry,this.fireworksMaterial)
+     
 
     }
     addScene(scene,camera){
         console.log(this.startPoint)
         scene.add(this.startPoint)
         scene.add(this.fireworks)
+
+
         this.scene=scene
     }
     //update变量
